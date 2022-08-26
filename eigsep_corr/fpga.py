@@ -1,7 +1,8 @@
 import casperfpga
 import casperfpga.synth
 import hera_corr_f
-
+import numpy as np
+import struct
 
 class EigsepFpga:
     
@@ -64,7 +65,7 @@ class EigsepFpga:
             Which correlation to read, e.g. "02". Assuming N<M.
         """
         name = "corr_cross_%s_dout"%NM
-        spec = np.array(stuct.unpack(">4096l", self.fpga.read(name, 16384)))
+        spec = np.array(struct.unpack(">4096l", self.fpga.read(name, 16384)))
         return spec
 
     def test_corr_noise(self):
@@ -124,4 +125,4 @@ class EigsepFpga:
         assert np.any(cross_spec[2] != cross_spec[4])
         # there's no reason for all imag parts to be 0 anymore
         for i in range(3):
-            assert np.any(cross[2*i][1::2] != 0)
+            assert np.any(cross_spec[2*i][1::2] != 0)
