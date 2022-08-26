@@ -1,5 +1,5 @@
 import casperfpga
-import casperfga.synth
+import casperfpga.synth
 import hera_corr_f
 
 
