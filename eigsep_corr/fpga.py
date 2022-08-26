@@ -18,7 +18,7 @@ class EigsepFpga:
         self.sync = hera_corr_f.blocks.Sync(fpga, "sync")
 
         self.autos = [0, 1, 2, 3, 4, 5]
-        self.crosses = ["02", "13", "24", "35", 04", 15"]
+        self.crosses = ["02", "13", "24", "35", "04", "15"]
 
     def initialize_fpga(self, corr_acc_len=2**28, corr_scalar=2**9):
         """
