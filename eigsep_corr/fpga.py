@@ -6,7 +6,7 @@ import hera_corr_f
 class EigsepFpga:
     
     def __init__(self, ip, fpg_file=None):
-        self.fpga = casperfpga.casperfpga(ip)
+        self.fpga = casperfpga.CasperFpga(ip)
         if fpg_file is not None:
             self.fpg_file = fpg_file
             self.fpga.upload_to_ram_and_program(self.fpg_file)
