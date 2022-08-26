@@ -15,7 +15,7 @@ class EigsepFpga:
             self.fpga, num_chans=2, resolution=8, ref=10,
         )
         self.adc.init(sample_rate=500)
-        self.sync = hera_corr_f.blocks.Sync(fpga, "sync")
+        self.sync = hera_corr_f.blocks.Sync(self.fpga, "sync")
 
         self.autos = [0, 1, 2, 3, 4, 5]
         self.crosses = ["02", "13", "24", "35", "04", "15"]
