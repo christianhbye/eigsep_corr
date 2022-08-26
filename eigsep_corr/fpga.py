@@ -5,12 +5,16 @@ import hera_corr_f
 
 class EigsepFpga:
     
-    def __init__(self, ip, fpg_file):
+    def __init__(self, ip, fpg_file=None):
         self.fpga = casperfpga.casperfpga(ip)
-        self.fpg_file = fpg_file
-        self.fpga.upload_to_ram_and_program(self.fpg_file)
+        if fpg_file is not None:
+            self.fpg_file = fpg_file
+            self.fpga.upload_to_ram_and_program(self.fpg_file)
         self.synth = casperfpga.synth.LMX2581(self.fpga, "synth")
-        self.adc = hera_corr_f.blocks.Adc(self.fpga)
+        self.adc = hera_corr_f.blocks.Adc(
+            self.fpga, num_chans=2, resolution=8, ref=10,
+        )
+        self.adc.init(sample_rate=500)
         self.sync = hera_corr_f.blocks.Sync(fpga, "sync")
 
         self.autos = [0, 1, 2, 3, 4, 5]
