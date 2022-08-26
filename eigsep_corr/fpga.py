@@ -42,9 +42,9 @@ class EigsepFpga:
         self.adc.init(sample_rate=sample_rate)
 
     def synchronize(self):
-        self.sync_arm_sync()
+        self.sync.arm_sync()
         for i in range(3):
-            sync.sw_sync()
+            self.sync.sw_sync()
 
     def read_auto(self, N):
         """
