@@ -88,8 +88,8 @@ class EigsepFpga:
         # read a second time and see we get all the same
         auto_spec2 = [self.read_auto(N) for N in self.autos]
         cross_spec2 = [self.read_cross(NM) for NM in self.crosses]
-        assert np.all(auto_spec == auto_spec2)
-        assert np.all(cross_spec == cross_spec2)
+        assert np.allclose(auto_spec, auto_spec2)
+        assert np.allclose(cross_spec, cross_spec2)
         # all spectra should be the same since the noise is the same
         assert np.all(auto_spec == auto_spec[0])
         assert np.all(cross_spec == cross_spec[0])
